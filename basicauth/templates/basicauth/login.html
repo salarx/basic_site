@@ -1,0 +1,23 @@
+{% extends 'basicauth/base.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Login</legend><br>                    
+            <div class="form-group">
+                <label>Username:</label>
+                <input type="text" class="form-control" placeholder="Enter Username" name="username">        
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" class="form-control" placeholder="Enter Password" name="password">
+            </div>
+            <button type="submit" class="btn btn-outline-info">Login</button>
+        </fieldset>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'basicauth/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Welcome, {{ user.username }}</h1>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">Name: </th>
+                    <td>{{ user.first_name }} {{ user.last_name }}</th>                        
+                </tr>
+                <tr>
+                    <th scope="row">Username: </th>
+                    <td>{{ user.username }}</td>                        
+                </tr>
+                <tr>
+                    <th scope="row">Email: </th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">College: </th>
+                    <td>{{ user.college_name }}</td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+</div>
+    
+{% else %}
+<h1>Total Registered Users: {{ count }}</h1>
+<div class="row">
+    {% for user in users %}
+        <div class="col-sm-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">{{ user.username }}</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
+                    <p class="card-text">{{ user.college_name }}</p>
+                </div>
+            </div>
+        </div>    
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
