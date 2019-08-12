@@ -24,17 +24,19 @@ class EditPassForms(PasswordChangeForm):
 
 class EditProfileForms(UserChangeForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    password = forms.CharField(label="", widget=forms.TextInput(attrs={'type':'hidden'}))
+    college_name = forms.CharField(required=False, max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
     first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
     last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
     
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'college_name', )
+        fields = ('username', 'first_name', 'last_name', 'email', 'college_name', 'password')
 
     def __init__(self, *args, **kwargs):
         super(EditProfileForms, self).__init__(*args, **kwargs)
-        self.fields.pop('password')
-        self.fields['college_name'].widget.attrs['class'] = 'form-control'
+        #self.fields.pop('password')
+        #self.fields['college_name'].widget.attrs['class'] = 'form-control'
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['username'].help_text = '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
 
